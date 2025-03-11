@@ -1,0 +1,21 @@
+﻿using DocumentFormat.OpenXml;
+using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml.Presentation;
+using A = DocumentFormat.OpenXml.Drawing;
+using P14 = DocumentFormat.OpenXml.Office2010.PowerPoint;
+using P15 = DocumentFormat.OpenXml.Office2013.PowerPoint;
+
+namespace MDToPPTX.PPTX.DefaultParts.SlideLayouts
+{
+	public abstract class SlideLayoutPartBase
+	{
+		protected PPTXSlideLayout LayoutSetting { get; private set; }
+
+		public void Init(EPPTXSlideLayoutType LayoutType, PPTXSlideLayoutGroup SlideLayouts)
+		{
+			this.LayoutSetting = SlideLayouts.SlideLayouts[LayoutType];
+		}
+
+		public abstract SlideLayoutPart CreateSlideLayoutPart(OpenXmlPartContainer containerPart);
+	}
+}
